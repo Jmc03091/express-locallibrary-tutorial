@@ -1,7 +1,7 @@
 const BookInstance = require("../models/bookinstance");
 const Book = require("../models/book");
 const asyncHandler = require("express-async-handler");
-const { book, validationResult } = require("express-validation");
+const { body, validationResult } = require("express-validator");
 
 // Display list of all BookInstances.
 exports.bookinstance_list = asyncHandler(async (req, res, next) => {
@@ -89,8 +89,7 @@ exports.bookinstance_create_post = asyncHandler(async (req, res, next) => {
       await bookInstance.save();
       res.redirect(bookInstance.url);
     }
-  }),
-
+  });
 });
 
 // Display BookInstance delete form on GET.
